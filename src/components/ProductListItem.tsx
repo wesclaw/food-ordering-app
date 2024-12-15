@@ -1,12 +1,15 @@
-import { StyleSheet, Text, View, Image} from 'react-native';
+import { StyleSheet, Text, View, Image, Pressable} from 'react-native';
+import { Link } from 'expo-router'
 
 const ProductListItem = ({ product }) => {
   return(
-    <View style={styles.container}>
+    <Link href={`/${product.id}`} asChild>
+    <Pressable style={styles.container}>
       <Image source={{uri: product.image}} style={styles.productImage} resizeMode='contain'/>
       <Text style={styles.title}>{product.name}</Text>
       <Text>${product.price}</Text>
-    </View>
+    </Pressable>
+    </Link>
   )
 }
 

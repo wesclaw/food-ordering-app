@@ -1,10 +1,11 @@
-import { FlatList } from 'react-native';
+import { FlatList, StyleSheet } from 'react-native';
 import products  from '@assets/data/products';
 import ProductListItem from '@components/ProductListItem';
 
 export default function MenuScreen() {
   return (
-    <FlatList
+    <FlatList 
+    style={styles.container}
     data={products}
     renderItem={({item: pizza})=><ProductListItem product={pizza}/>}
     numColumns={2}
@@ -14,3 +15,8 @@ export default function MenuScreen() {
   );
 }
 
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'ghostwhite',
+  },
+});
