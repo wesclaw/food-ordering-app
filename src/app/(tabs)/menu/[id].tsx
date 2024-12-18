@@ -3,6 +3,7 @@ import React from 'react'
 import { Stack, useLocalSearchParams } from 'expo-router'
 import products from '@assets/data/products';
 import { useState } from 'react'
+import Button from '@components/Button'
 
 const sizes = ['S', 'M', 'L', 'XL']
 
@@ -12,8 +13,11 @@ const productDetailScreen = () => {
 
   const [ selectedSize, setSelectedSize ] = useState('L')
  
-  
   const getProduct = products.find((product)=>product.id.toString()===id)
+
+  const addToCart = () => {
+    console.warn('adding to cart, size: ', selectedSize)
+  }
 
   if(!getProduct) {
     return <Text>Product not found</Text>
@@ -27,12 +31,13 @@ const productDetailScreen = () => {
       style={styles.image}
       resizeMode="contain"
       />
-      <Text>Select size</Text>
+      <Text style={styles.selectSize}>Select size</Text>
       <View style={styles.sizes}>
         {sizes.map(size=><Pressable onPress={()=>{setSelectedSize(size)}} style={[styles.size, {backgroundColor: selectedSize===size ? 'gainsboro' : 'transparent'}]} key={size}>
           <Text style={[styles.textSize, {color: selectedSize===size?'black':'grey'}]}>{size}</Text></Pressable>)}
       </View>
-      <Text style={styles.price}>{getProduct.price}</Text>
+      <Text style={styles.price}>${getProduct.price}</Text>
+      <Button onPress={addToCart} text="Add to cart"/>
     </ScrollView>
   )
 }
@@ -47,10 +52,13 @@ const styles = StyleSheet.create({
     width: '100%',
    aspectRatio: 1
   },
-  title:{},
+  selectSize:{
+    fontSize: 18
+  },
   price:{
-    fontSize: 19,
-    fontWeight: 'bold'
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginTop: 'auto',
   },
   sizes:{
     flexDirection: 'row',
