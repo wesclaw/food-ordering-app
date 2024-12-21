@@ -1,8 +1,8 @@
-import { createContext } from 'react'
+import { createContext, PropsWithChildren, useContext } from 'react'
 
 const CartContext = createContext({})
 
-const CartProvider = ({children}) => {
+const CartProvider = ({children}: PropsWithChildren) => {
   return(
     <CartContext.Provider value={{item: [], onAddItem: ()=>{}}}>
     {children}
@@ -11,4 +11,5 @@ const CartProvider = ({children}) => {
 }
 
 export default CartProvider;
+
 

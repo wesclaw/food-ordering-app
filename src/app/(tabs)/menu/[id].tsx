@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
   image:{
     width: '100%',
-   aspectRatio: 1
+    aspectRatio: 1
   },
   selectSize:{
     fontSize: 18
